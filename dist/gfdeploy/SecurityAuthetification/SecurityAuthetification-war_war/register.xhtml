@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+            h1 {
+                color: brown;
+            }
+
+            h2 {
+                color: chocolate;
+            }
+
+            .btn {
+                margin-top: 10px;
+                 color: #fff;
+                background-color: #007bff;
+                border-color: #007bff;
+                display: inline-block;
+                font-weight: 400;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: middle;
+                user-select: none;
+                border: 1px solid transparent;
+                padding: .375rem .75rem;
+                font-size: 0.75rem;
+                line-height: 1.5;
+                border-radius: .25rem;
+                width: 80px;
+            }
+            
+            .btnCancel {
+                margin-top: 10px;
+                 color: #fff;
+                background-color: crimson;
+                border-color: #007bff;
+                display: inline-block;
+                font-weight: 400;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: middle;
+                user-select: none;
+                border: 1px solid transparent;
+                padding: .375rem .75rem;
+                font-size: 0.75rem;
+                line-height: 1.5;
+                border-radius: .25rem;
+                width: 80px;
+            }
+            
+            .btnCancel:hover{
+                background-color: coral
+            }
+
+            .btn:hover {
+                background-color: #48ff0c;
+            }
+
+            hr {
+                width: 150px;
+                border: 5px solid #48ff0c;
+            }
+
+            .input{
+                width: 200px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <fieldset>
+            <center>
+                <h1> <span style="color: #0000007a;">Auth-Demo</span> SECURITY </h1>
+            </center>
+            <hr></hr>
+        </fieldset>
+        <fieldset style="background-color: antiquewhite;">
+            <legend>Menu</legend>
+            <center>
+                <div >
+                    <a style="margin-left:30px" href="index.jsf">Index</a>
+                    <a style="margin-left:30px" href="login.jsf" >Login</a>
+                    <a style="margin-left:30px" href="register.jsf" >Register</a>
+                    <a style="margin-left:30px" href="recover.jsf" >Recover</a>
+                </div>
+            </center>
+        </fieldset>
+        <fieldset>
+                <legend>Ecran Notification</legend>
+                <center>
+                 <h:messages showSummary="true" style="color: #4e088c;" showDetail="false"  infoClass="info-messages" />
+                 </center>
+            </fieldset>
+        <br></br> 
+        <center>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Inscription"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Email:" for="email" />
+                    <h:inputText class="input" id="email" value="#{loginController.authentification.email}" title="Email" 
+                                 immediate="true" required="true" requiredMessage="Svp saise votre email." >
+                       <f:validateRegex  pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                    </h:inputText>
+                    <h:outputLabel value="Password:" for="password" />
+                    <h:inputSecret class="input" id="password" value="#{loginController.authentification.password}" title="Password" immediate="true" required="true" requiredMessage="Svp saisie un mot de passe." />
+
+                    <h:outputLabel value="Password Verif:" for="passwordV" />
+                    <h:inputSecret class="input" id="passwordV" value="#{loginController.passwordVerification}" title="PasswordV" immediate="true" required="true" requiredMessage="Svp retaper votre mot de passe." />
+                  
+                    <h:outputLabel value="Identity" for="identity" />
+                    <h:selectOneMenu class="input" id="identity" value="#{loginController.authentification.role}" immediate="true" title="identity" required="true" requiredMessage="Svp choisirs d'abord votre identity!.">
+                        <f:selectItem itemLabel = "SELECTIONER IDENTITY" />
+                        <f:selectItem itemValue = "Admin" itemLabel = "Admin" /> 
+                        <f:selectItem itemValue = "User" itemLabel = "User" /> 
+                        <f:selectItem itemValue = "Visitor" itemLabel = "Visitor" />   
+                    </h:selectOneMenu>
+                    
+                    <h:outputLabel value="Nom:" for="nom" />
+                    <h:inputText class="input" id="nom" value="#{loginController.authentification.nom}" title="Nom" required="true" requiredMessage="Svp choisir d'abord votre Nom." immediate="true" />
+                    
+                    <h:outputLabel value="Prenom:" for="prenom" />
+                    <h:inputText class="input" id="prenom" value="#{loginController.authentification.prenom}" title="Prenom" required="true" requiredMessage="Svp Choisirs d'abord votre Prenom." immediate="true" />
+                    
+                    <h:commandButton class="btn" value="Valider" action="#{loginController.register()}"></h:commandButton>
+                <input class="btnCancel" type="reset" value="Reset" />
+                </h:panelGrid>
+                
+            </h:form>
+        </f:view>
+        </center>
+        
+         
+        
+        
+        
+        <fieldset style="margin-top: 90px; display: block;">
+            <center>
+                <h3>Copyrights@MasterISI</h3>
+            </center>
+        </fieldset>
+
+    </h:body>
+</html>
+

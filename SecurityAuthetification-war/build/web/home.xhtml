@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+            h1 {
+                color: brown;
+            }
+
+            h2 {
+                color: chocolate;
+            }
+
+            .btn {
+                margin-top: 10px;
+                margin-left: -310;
+                color: #fff;
+                background-color: #007bff;
+                border-color: #007bff;
+                display: inline-block;
+                font-weight: 400;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: middle;
+                user-select: none;
+                border: 1px solid transparent;
+                padding: .375rem .75rem;
+                font-size: 0.75rem;
+                line-height: 1.5;
+                border-radius: .25rem;
+            }
+
+            .btn:hover {
+                background-color: #48ff0c;
+            }
+
+            hr {
+                width: 150px;
+                border: 5px solid #48ff0c;
+            }
+            
+            input{
+                width: 200px;
+            }
+ 
+        </style>
+    </h:head>
+    <h:body>
+        <fieldset>
+            <center>
+                <h1> <span style="color: #0000007a;">Auth-Demo</span> SECURITY </h1>
+            </center>
+            <hr></hr>
+            <center>
+            <h3> <span style="color: #0000007a;">IDENTITY</span> ${IDENTITY} </h3>
+            </center>
+        </fieldset>
+        <fieldset style="background-color: antiquewhite;">
+            <legend>Menu</legend>
+            <center>
+                <h:form>
+                    <h:commandLink style="margin-left: 30px" action="#{loginController.logout()}" value="Deconnecter"></h:commandLink>
+                </h:form>
+            </center>
+        </fieldset>
+        <br></br>  
+        <div style="display: inline-block">
+            <h2 style="color: #4e088c;">${msgWm} <em style="color: dodgerblue">${Nom}</em> </h2>
+        </div>
+        <center>
+        <f:view >
+
+
+            <h:form>
+                <h1><h:outputText value="List Utilisateurs"/></h1>
+                <h:dataTable value="#{loginController.findAll()}" var="item" border="1" cellpadding="10px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column rendered="#{loginController.visitorVisible}" >
+                        <f:facet name="header">
+                            <h:outputText value="Email"/>
+                        </f:facet>
+                        <h:outputText value="#{item.email}"/>
+                    </h:column>
+                    <h:column rendered="#{loginController.userVisible}" >
+                        <f:facet name="header">
+                            <h:outputText value="Password"/>
+                        </f:facet>
+                        <h:outputText value="#{item.password}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nom"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nom}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Prenom"/>
+                        </f:facet>
+                        <h:outputText value="#{item.prenom}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Identity"/>
+                        </f:facet>
+                        <h:outputText value="#{item.role}"/>
+                    </h:column>
+                    
+                    <h:column rendered="#{loginController.adminVisible}">
+                        <f:facet name="header">
+                            <h:outputText value="Option"/>
+                        </f:facet>
+                        <h:commandLink style="color: red" value="remove" action="#{loginController.delete(item)}"></h:commandLink>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </f:view>
+</center>
+      
+    </h:body>
+</html>
+
